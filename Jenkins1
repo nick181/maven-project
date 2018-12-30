@@ -1,24 +1,26 @@
-import jenkins.model.*
-jenkins = Jenkins.instance
+
 
 pipeline { 
     agent any 
     stages {
-        stage('Build') { 
+        stage('Compile Stage') { 
             steps { 
-                sh 'make' 
+                withMaven(maven : 'localMaven'){
+                sh 'mvn clean compile'
+                } 
             }
         }
-        stage('Test'){
-            steps {
-                sh 'make check'
-                junit 'reports/**/*.xml' 
-            }
+        stage('Testing Stage'){
+           steps { 
+                withMaven(maven : 'localMaven'){
+                sh 'mvn test'
+                } 
         }
-        stage('Deploy') {
-            steps {
-                sh 'make publish'
-            }
+        stage('Deployment stage') {
+            steps { 
+                withMaven(maven : 'localMaven'){
+                sh 'mvn deploy'
+            } 
         }
     }
 }
