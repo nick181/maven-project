@@ -3,28 +3,27 @@
 pipeline { 
     agent any 
     stages {
-        stage('Compile Stage') { 
+        stage('Init') { 
             steps { 
-                withMaven(maven : 'localMaven'){
-                sh 'mvn clean compile'
+                echo "Testing.."
                 } 
             }
-        }
-        stage('Testing Stage'){
-           steps { 
-                withMaven(maven : 'localMaven'){
-                sh 'mvn test'
-                } 
-        }
-		}
-        stage('Deployment stage') {
+        
+        stage('Build'){
+            
             steps { 
-                withMaven(maven : 'localMaven'){
-                sh 'mvn deploy'
-            } 
-        }
+                echo "Building.."
+                } 
+            }
+		
+        stage('Deployment stage') {
+          
+            steps { 
+                echo "Deploying.."
+                } 
+            }
 
-	  }
+	  
   }
 }	
 
