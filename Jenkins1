@@ -16,12 +16,16 @@ pipeline {
                 sh 'mvn test'
                 } 
         }
+		}
         stage('Deployment stage') {
             steps { 
                 withMaven(maven : 'localMaven'){
                 sh 'mvn deploy'
             } 
         }
-    }
+
+	  }
+  }
+}	
 
 
