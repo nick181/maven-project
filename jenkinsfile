@@ -37,7 +37,7 @@ stages{
 
                 stage ("Deploy to Production"){
                     steps {
-                      bat "pscp -i C:/Users/nihal/Desktop/jenkins_learning/jenkins-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                      bat "pscp -i C:/Users/nihal/Desktop/jenkins_learning/jenkins-demo.pem webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
